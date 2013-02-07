@@ -1,0 +1,6 @@
+<server>
+<uptime>1001</uptime>
+<service state='on'>SSHD</service>
+<service state='off'>HTTPD</service>
+<service state='error'>FTP</service>
+</server>
