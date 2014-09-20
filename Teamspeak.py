@@ -47,11 +47,17 @@ class ServerQuery():
         the expected value. If fails - returning empty string
         '''
         self.tel.write(''.join([message, '\n']).encode())
+        self.read_console_until()
+
+    def read_console_until(self, expected='error id=0 msg=ok\n\r'):
         response = self.tel.read_until(expected, 1)
         if expected in response:
             return(response)
         else:
             return ''
+
+    def check_if_any_message_on_console(self):
+        return self.read_console_until('\n\r')
 
     @query_decorator
     def login(self, client_login_name='SA', client_login_password='8JPwQQwM'):
