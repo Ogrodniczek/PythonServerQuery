@@ -65,7 +65,7 @@ class ServerQuery():
         '''
         raw.message = self.check_if_any_message_on_console()
         match = re.search(
-                'notifytextmessage targetmode=[0-9]* msg=(.*) target=[0-9]* invokerid=(.*) invokername=',
+                'notifytextmessage targetmode=[0-9]* msg=(.*) target=[0-9]* invokerid=([0-9]*) invokername=',
                 raw_message)
         return match.group(1), match.group(2)
 
