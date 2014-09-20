@@ -103,6 +103,11 @@ class ServerQuery():
         return(self.group_list)
 
     @query_decorator
+    def servernotifyregister(self):
+        self.sender('servernotifyregister event=textprivate')
+
+
+    @query_decorator
     def poke(self, clid, message):
         self.sender('clientpoke msg='+ message + ' clid=' + clid)
 
