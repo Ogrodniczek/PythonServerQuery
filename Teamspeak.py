@@ -1,6 +1,6 @@
 '''Class for Teamspeak3 ServerQuery access'''
 import telnetlib
-
+import re
 
 def query_decorator(method):
     '''Decorator used for changing spaces to '\s' inside
@@ -58,6 +58,17 @@ class ServerQuery():
 
     def check_if_any_message_on_console(self):
         return self.read_console_until('\n\r')
+
+    def get_message(self):
+        '''
+        Returning id of user and message
+        '''
+        raw.message = self.check_if_any_message_on_console()
+        match = re.search(
+                'notifytextmessage targetmode=[0-9]* msg=(.*) target=[0-9]* invokerid=(.*) invokername=',
+                raw_message)
+        return match.group(1), match.group(2)
+
 
     @query_decorator
     def login(self, client_login_name='SA', client_login_password='8JPwQQwM'):
